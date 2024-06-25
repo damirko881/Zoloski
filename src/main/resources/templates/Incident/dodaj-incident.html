@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Incident</title>
+    <link rel="stylesheet" href="styleforma.css">
+</head>
+<body>
+<div class="container">
+<h1>Create Incident</h1>
+<form th:action="@{/dodaj-incident}" method="post" th:object="${incident}">
+    <div class="form-group">
+        <label for="vrsta">Vrsta:</label>
+        <input type="text" id="vrsta" th:field="*{vrsta}" required>
+    </div>
+    <div class="form-group">
+        <label for="komentar">Komentar:</label>
+        <textarea id="komentar" th:field="*{komentar}" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="znacajnost">Znacajnost:</label>
+        <input type="text" id="znacajnost" th:field="*{znacajnost}" required>
+    </div>
+    <div class="form-group">
+        <label for="troskovi">Troskovi:</label>
+        <input type="text" id="troskovi" th:field="*{troskovi}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="nastamba">Nastamba:</label>
+        <select id="nastamba" th:field="*{nastamba.id}">
+            <option th:each="nastamba : ${nastambe}" th:value="${nastamba.id}" th:text="${nastamba.naziv}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="zivotinja">Zivotinja:</label>
+        <select id="zivotinja" th:field="*{zivotinja.id}">
+            <option th:each="zivotinja : ${zivotinje}" th:value="${zivotinja.id}" th:text="${zivotinja.ime}"></option>
+        </select>
+    </div>
+    <button type="submit">Dodaj incident</button>
+</form></div>
+</body>
+</html>

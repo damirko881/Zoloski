@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikazi Životinju</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikazi Životinju</h1>
+    </header>
+    <div class="tablica">
+        <h2 th:text="${nastamba.naziv}">Ime Životinje</h2>
+        <p><strong>Geometrijski Opis:</strong> <span th:text="${nastamba.geomOpis}">Opis</span></p>
+        <p><strong>Pozicija:</strong> <span th:text="${nastamba.pozicija}">Pozicija</span></p>
+        <h3>Životinje u nastambi:</h3>
+        <ul>
+            <li th:each="zivotinja : ${nastamba.zivotinje}">
+                <a th:href="@{/zivotinja/{id}(id=${zivotinja.id})}" th:text="${zivotinja.ime + ' - ' + zivotinja.nazivHr }">Ime životinje</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

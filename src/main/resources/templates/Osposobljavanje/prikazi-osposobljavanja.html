@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prikaži Osposobljavanja</title>
+  <link rel="stylesheet" href="/styleprikaz.css">
+  <script>
+    function potvrdiBrisanje(id) {
+      var odgovor = confirm("Jeste li sigurni da želite obrisati osposobljavanje?");
+      if (odgovor) {
+        window.location.href = "/obrisi-osposobljavanje/" + id;
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Prikaži Osposobljavanja</h1>
+  </header>
+  <div th:each="osposobljavanje : ${osposobljavanja}" class="tablica">
+    <h2 th:text="${osposobljavanje.naziv}">Naziv Osposobljavanja</h2>
+    <h3>Radnici s ovim osposobljavanjem:</h3>
+    <ul>
+      <li th:each="radnik : ${osposobljavanje.radnici}">
+        <a th:href="@{/radnik/{id}(id=${radnik.id})}" th:text="${radnik.ime} +' ' + ${radnik.prezime}">Ime vodica</a>
+      </li>
+    </ul>
+    <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${osposobljavanje.id} + ')'" class="button">Obriši</a>
+  </div>
+</div>
+</body>
+</html>

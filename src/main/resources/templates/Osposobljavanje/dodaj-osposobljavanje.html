@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Osposobljavanje</title>
+    <link rel="stylesheet" href="styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj Osposobljavanje</h2>
+    <form action="#" th:action="@{/dodaj-osposobljavanje}" th:object="${osposobljavanje}" method="post">
+        <div class="form-group">
+            <label for="naziv">Naziv Osposobljavanja:</label>
+            <input type="text" id="naziv" th:field="*{naziv}" required>
+        </div>
+        <button type="submit">Dodaj Osposobljavanje</button>
+    </form>
+</div>
+</body>
+</html>

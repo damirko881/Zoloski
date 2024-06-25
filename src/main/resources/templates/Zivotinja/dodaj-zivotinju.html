@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Animal</title>
+    <link rel="stylesheet" href="/styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj zivotinju</h2>
+    <form action="#" th:action="@{/dodaj-zivotinju}" th:object="${zivotinja}" method="post">
+        <div class="form-group">
+            <label for="nazivHr">Hrvatski naziv:</label>
+            <input type="text" id="nazivHr" th:field="*{nazivHr}" required>
+        </div>
+        <div class="form-group">
+            <label for="nazivEn">Naziv:</label>
+            <input type="text" id="nazivEn" th:field="*{nazivEn}" required>
+        </div>
+        <div class="form-group">
+            <label for="nazivL">Latinski naziv</label>
+            <input type="text" id="nazivL" th:field="*{nazivL}" required>
+        </div>
+        <div class="form-group">
+            <label for="ime">Ime zivotinje</label>
+            <input type="text" id="ime" th:field="*{ime}" required>
+        </div>
+        <div class="form-group">
+            <label for="kolicina">Kolicina (nije obavezno, samo za skupine)</label>
+            <input type="number" id="kolicina" th:field="*{kolicina}">
+        </div>
+        <div class="form-group">
+            <label for="dobavljanje">Nacin na oji smo dosli do zivotinje</label>
+            <textarea id="dobavljanje" th:field="*{dobavljanje}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="habitat">Habitat:</label>
+            <select id="habitat" name="nastamba.id" required>
+                <option th:each="nastamba : ${nastambe}" th:value="${nastamba.id}" th:text="${nastamba.naziv}"></option>
+            </select>
+        </div>
+        <button type="submit">Add Animal</button>
+    </form>
+</div>
+</body>
+</html>

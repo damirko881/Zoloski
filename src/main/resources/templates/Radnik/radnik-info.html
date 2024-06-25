@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikazi Životinju</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikazi Životinju</h1>
+    </header>
+    <div class="tablica">
+        <h2 th:text="${radnik.ime + ' ' + radnik.prezime}">Ime i prezime radnika</h2>
+        <p><strong>Kontakt:</strong> <span th:text="${radnik.kontakt}">Kontakt</span></p>
+        <p><strong>Obrazovanje:</strong> <span th:text="${radnik.obrazovanje}">Obrazovanje</span></p>
+        <p><strong>Radna vremena:</strong>
+            <span th:each="radnoVrijeme : ${radnik.radnaVremena}">
+                <span th:text="${radnoVrijeme.datum} + ' ' + ${radnoVrijeme.pocetak} + ' - ' + ${radnoVrijeme.kraj}"></span>,
+            </span>
+        </p>
+        <p><strong>Osposobljavanja:</strong>
+            <span th:each="osposobljavanje : ${radnik.osposobljavanja}">
+                <span th:text="${osposobljavanje.naziv}"></span>,
+            </span>
+        </p>
+    </div>
+</div>
+</body>
+</html>

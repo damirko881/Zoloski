@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uredi Radnika</title>
+    <link rel="stylesheet" href="/styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj Radnika</h2>
+    <form th:action="@{/uredi-radnika/{id}(id=${radnik.id})}" th:object="${radnik}" method="post">
+        <div class="form-group">
+            <label for="ime">Ime:</label>
+            <input type="text" id="ime" th:field="*{ime}" required>
+        </div>
+        <div class="form-group">
+            <label for="prezime">Prezime:</label>
+            <input type="text" id="prezime" th:field="*{prezime}" required>
+        </div>
+        <div class="form-group">
+            <label for="kontakt">Kontakt:</label>
+            <input type="text" id="kontakt" th:field="*{kontakt}" required>
+        </div>
+        <div class="form-group">
+            <label for="obrazovanje">Obrazovanje:</label>
+            <input type="text" id="obrazovanje" th:field="*{obrazovanje}" required>
+        </div>
+        <div class="form-group">
+            <label for="osposobljavanja">Osposobljavanja:</label>
+            <select id="osposobljavanja" th:field="*{osposobljavanja}" multiple>
+                <option th:each="osposobljavanje : ${osposobljavanja}" th:value="${osposobljavanje.id}" th:text="${osposobljavanje.naziv}"></option>
+            </select>
+        </div>
+        <button type="submit">Spremi Radnika</button>
+    </form>
+</div>
+</body>
+</html>

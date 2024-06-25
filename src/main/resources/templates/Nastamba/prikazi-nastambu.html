@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prikazi Nastambu</title>
+  <link rel="stylesheet" href="/styleprikaz.css">
+  <script>
+    function potvrdiBrisanje(id) {
+      var odgovor = confirm("Jeste li sigurni da želite obrisati nastambu?");
+      if (odgovor) {
+        window.location.href = "/obrisi-nastambu/" + id;
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Prikazi Nastambu</h1>
+  </header>
+  <div th:each="nastamba : ${nastambe}" class="tablica">
+    <h2 th:text="${nastamba.naziv}">Naziv Nastambe</h2>
+    <p><strong>Geometrijski Opis:</strong> <span th:text="${nastamba.geomOpis}">Opis</span></p>
+    <p><strong>Pozicija:</strong> <span th:text="${nastamba.pozicija}">Pozicija</span></p>
+    <h3>Životinje u nastambi:</h3>
+    <ul>
+      <li th:if="${#lists.isEmpty(nastamba.zivotinje)}">Nema</li>
+      <li th:each="zivotinja : ${nastamba.zivotinje}">
+        <a th:href="@{/zivotinja/{id}(id=${zivotinja.id})}" th:text="${zivotinja.ime + ' - ' + zivotinja.nazivHr }">Ime životinje</a>
+      </li>
+    </ul>
+    <a th:href="@{/uredi-nastambu/{id}(id=${nastamba.id})}" class="button">Uredi</a>
+    <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${nastamba.id} + ')'" class="button">Obriši</a>
+  </div>
+</div>
+</body>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 70%;
+            left: 15%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77a0a9 3px solid;
+        }
+
+        header h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 4% 0 4%;
+        }
+
+        nav ul {
+            padding: 0;
+            list-style: none;
+            background: #333;
+            text-align: center;
+            padding-left: 0;
+            left: 100px;
+            width: 600px;
+            margin: 0 10px;
+        }
+
+        nav ul li {
+            display: block;
+            border-bottom: 1px solid #444;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 20px 30px;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background: #77a0a9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Zoo Dashboard</h1>
+    </header>
+    <div class="nav-container">
+        <nav>
+            <ul>
+                <li><a href="/dodaj-nastambu">Dodaj Nastambu</a></li>
+                <li><a href="/dodaj-zivotinju">Dodaj Životinju</a></li>
+                <li><a href="/dodaj-radnika">Dodaj Radnika</a></li>
+                <li><a href="/dodaj-radno-vrijeme">Dodaj Radno Vrijeme</a></li>
+                <li><a href="/dodaj-obavezu">Dodaj Obavezu</a></li>
+                <li><a href="/dodaj-grupnu-posjetu">Dodaj Grupnu Posjetu</a></li>
+                <li><a href="/dodaj-osposobljavanje">Dodaj Osposobljavanje</a></li>
+                <li><a href="/dodaj-incident">Dodaj Incident</a></li>
+                <li><a href="/dodaj-trosak">Dodaj Trosak</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+                <li><a href="/prikazi-nastambu">Prikazi Nastambu</a></li>
+                <li><a href="/prikazi-sve-zivotinje">Prikazi Životinje</a></li>
+                <li><a href="/prikazi-sve-radnike">Prikazi Radnike</a></li>
+                <li><a href="/prikazi-sva-radna-vremena">Prikazi Radno Vrijeme</a></li>
+                <li><a href="/prikazi-sve-obaveze">Prikazi Obavezu</a></li>
+                <li><a href="/prikazi-grupne-posjete">Prikazi Grupnu Posjetu</a></li>
+                <li><a href="/prikazi-osposobljavanja">Prikazi Osposobljavanja</a></li>
+                <li><a href="/prikazi-incidente">Prikazi Incidente</a></li>
+                <li><a href="/prikazi-troskove">Prikazi troskove</a></li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikazi Zivotinje</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+    <script>
+        function potvrdiBrisanje(id) {
+            var odgovor = confirm("Jeste li sigurni da želite obrisati životinju?");
+            if (odgovor) {
+                window.location.href = "/obrisi-zivotinju/" + id;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikazi Zivotinje</h1>
+    </header>
+    <div th:each="zivotinja : ${zivotinje}" class="tablica">
+        <h2 th:text="${zivotinja.ime}">Ime zivotinje</h2>
+        <p><strong>Hrvatski Naziv:</strong> <span th:text="${zivotinja.nazivHr}">Naziv</span></p>
+        <p><strong>Engleski Naziv:</strong> <span th:text="${zivotinja.nazivEn}">Naziv</span></p>
+        <p><strong>Latinski Naziv:</strong> <span th:text="${zivotinja.nazivL}">Naziv</span></p>
+        <p><strong>Količina:</strong> <span th:text="${zivotinja.kolicina}">Količina</span></p>
+        <p><strong>Dobavljanje:</strong> <span th:text="${zivotinja.dobavljanje}">Dobavljanje</span></p>
+        <p><strong>Uginuće:</strong> <span th:text="${zivotinja.uginuce} ? 'Da' : 'Ne'">Uginuće</span></p>
+        <p><strong>Nastamba:</strong>
+            <a th:href="@{/nastamba/{id}(id=${zivotinja.nastamba.id})}" th:if="${zivotinja.nastamba != null}" th:text="${zivotinja.nastamba.naziv}">Ime životinje</a>
+        </p>
+        <p><strong>Ukupni troškovi:</strong> <span th:text="${ukupniTroskoviMap[zivotinja.id]}">Ukupni troškovi</span></p>
+        <a th:href="@{/uredi-zivotinju/{id}(id=${zivotinja.id})}" class="button">Uredi</a>
+        <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${zivotinja.id} + ')'" class="button">Obriši</a>
+    </div>
+</div>
+</body>
+</html>

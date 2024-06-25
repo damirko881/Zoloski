@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikazi Životinju</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikazi Životinju</h1>
+    </header>
+    <div class="tablica">
+        <h2 th:text="${zivotinja.ime}">Ime Životinje</h2>
+        <p><strong>Hrvatski Naziv:</strong> <span th:text="${zivotinja.nazivHr}">Naziv</span></p>
+        <p><strong>Engleski Naziv:</strong> <span th:text="${zivotinja.nazivEn}">Naziv</span></p>
+        <p><strong>Latinski Naziv:</strong> <span th:text="${zivotinja.nazivL}">Naziv</span></p>
+        <p><strong>Količina:</strong> <span th:text="${zivotinja.kolicina}">Količina</span></p>
+        <p><strong>Dobavljanje:</strong> <span th:text="${zivotinja.dobavljanje}">Dobavljanje</span></p>
+        <p><strong>Uginuće:</strong> <span th:text="${zivotinja.uginuce} ? 'Da' : 'Ne'">Uginuće</span></p>
+        <p><strong>Ukupni troškovi:</strong> <span th:text="${ukupniTroskovi}">Ukupni troškovi</span></p>
+    </div>
+</div>
+</body>
+</html>

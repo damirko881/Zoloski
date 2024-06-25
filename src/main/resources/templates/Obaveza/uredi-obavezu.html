@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uredi Obavezu</title>
+    <link rel="stylesheet" href="/styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj Obavezu</h2>
+    <div th:if="${error}" class="warning">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:action="@{/uredi-obavezu/{id}(id=${obaveza.id})}" th:object="${obaveza}" method="post">
+        <div class="form-group">
+            <label for="naziv">Naziv:</label>
+            <input type="text" id="naziv" th:field="*{naziv}" required>
+        </div>
+        <div class="form-group">
+            <label for="radnoVrijeme">Radno Vrijeme:</label>
+            <select id="radnoVrijeme" th:field="*{radnoVrijeme.id}">
+                <option th:each="rv : ${radnaVremena}" th:value="${rv.id}" th:text="${rv.datum + ' ' + rv.pocetak +' ' + rv.kraj +' '+ rv.radnik.ime + ' ' + rv.radnik.prezime}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="pocetak">Početak:</label>
+            <input type="time" id="pocetak" th:field="*{pocetak}" required>
+        </div>
+        <div class="form-group">
+            <label for="kraj">Kraj:</label>
+            <input type="time" id="kraj" th:field="*{kraj}" required>
+        </div>
+        <div class="form-group">
+            <label for="zivotinja">Životinja (opcionalno):</label>
+            <select id="zivotinja" th:field="*{zivotinja.id}">
+                <option value="" th:text="'Nema životinje'"></option>
+                <option th:each="zivotinja : ${zivotinje}" th:value="${zivotinja.id}" th:text="${zivotinja.ime}"></option>
+            </select>
+        </div>
+        <button type="submit">Spremi Obavezu</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uredi grupnu posjetu</title>
+    <link rel="stylesheet" href="/styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h1>redi grupnu posjetu</h1>
+    <div th:if="${error}" class="warning">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:action="@{/uredi-grupnu-posjetu/{id}(id=${grupnaPosjeta.id})}" th:object="${grupnaPosjeta}" method="post" >
+        <div class="form-group">
+            <label for="naziv">Naziv grupe:</label>
+            <input type="text" id="naziv" name="nazivGrupe" th:field="*{nazivGrupe}" required>
+        </div>
+        <div class="form-group">
+            <label for="brojLjudi">Broj ljudi u grupi:</label>
+            <input type="number" id="brojLjudi" name="brojLjudiUGrupi" th:field="*{brojLjudiUGrupi}" required>
+        </div>
+        <div class="form-group">
+            <label for="komentar">Komentar:</label>
+            <textarea id="komentar" name="komentar" th:field="*{komentar}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="vrijemePocetka">Vrijeme početka:</label>
+            <input type="datetime-local" id="vrijemePocetka" name="vrijemePocetka" th:field="*{vrijemePocetka}" required>
+        </div>
+        <div class="form-group">
+            <label for="vrijemeZavrsetka">Vrijeme završetka:</label>
+            <input type="datetime-local" id="vrijemeZavrsetka" name="vrijemeZavrsetka" th:field="*{vrijemeZavrsetka}" required>
+        </div>
+        <div class="form-group">
+            <label for="vodici">Vodiči:</label>
+            <select id="vodici" name="vodici" multiple th:field="*{vodici}">
+                <option th:each="radnik : ${radnici}" th:value="${radnik.id}" th:text="${radnik.ime + ' ' + radnik.prezime}"></option>
+            </select>
+        </div>
+        <button type="submit">Dodaj grupnu posjetu</button>
+    </form></div>
+</body>
+</html>

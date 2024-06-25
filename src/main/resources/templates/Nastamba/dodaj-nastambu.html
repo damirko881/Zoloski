@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Nastambu</title>
+    <link rel="stylesheet" href="styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h1>Dodaj Nastambu</h1>
+    <form th:action="@{/dodaj-nastambu}" th:object="${nastamba}" method="post">
+        <div class="form-group">
+            <label for="naziv">Naziv:</label>
+            <input type="text" id="naziv" th:field="*{naziv}" required>
+            </div>
+        <div class="form-group">
+            <label for="geomOpis">Geometrijski Opis:</label>
+            <textarea id="geomOpis" th:field="*{geomOpis}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="pozicija">Pozicija:</label>
+            <input type="text" id="pozicija" th:field="*{pozicija}" required>
+        </div>
+        <button type="submit">Dodaj Nastambu</button>
+    </form>
+</div>
+</body>
+</html>

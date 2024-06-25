@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Radno Vrijeme</title>
+    <link rel="stylesheet" href="styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj Radno Vrijeme</h2>
+    <div th:if="${error}" class="warning">
+        <p th:text="${error}"></p>
+    </div>
+    <form action="#" th:action="@{/dodaj-radno-vrijeme}" th:object="${radnoVrijeme}" method="post">
+        <div class="form-group">
+            <label for="radnik">Radnik:</label>
+            <select id="radnik" th:field="*{radnik.id}">
+                <option th:each="radnik : ${radnici}" th:value="${radnik.id}" th:text="${radnik.ime + ' ' + radnik.prezime}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" th:field="*{datum}" required>
+        </div>
+        <div class="form-group">
+            <label for="pocetak">Početak:</label>
+            <input type="time" id="pocetak" th:field="*{pocetak}" required>
+        </div>
+        <div class="form-group">
+            <label for="kraj">Kraj:</label>
+            <input type="time" id="kraj" th:field="*{kraj}" required>
+        </div>
+        <button type="submit">Dodaj Radno Vrijeme</button>
+    </form>
+</div>
+</body>
+</html>

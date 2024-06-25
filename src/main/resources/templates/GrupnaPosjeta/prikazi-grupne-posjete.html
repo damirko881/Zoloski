@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prikazi Grupne Posjete</title>
+  <link rel="stylesheet" href="/styleprikaz.css">
+  <script>
+    function potvrdiBrisanje(id) {
+      var odgovor = confirm("Jeste li sigurni da želite obrisati grupnu posjetu?");
+      if (odgovor) {
+        window.location.href = "/obrisi-grupnu-posjetu/" + id;
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Prikazi Grupne Posjete</h1>
+  </header>
+  <div th:each="entry : ${grupnePosjetePoDatumu}" class="tablica">
+    <h2 th:text="${#temporals.format(entry.key, 'dd.MM.yyyy')}">Datum Grupne Posjete</h2>
+    <ul>
+      <li th:each="grupnaPosjeta : ${entry.value}">
+        <p><strong>Naziv grupe:</strong> <span th:text="${grupnaPosjeta.nazivGrupe}">Naziv Grupe</span></p>
+        <p><strong>Vrijeme početka:</strong> <span th:text="${grupnaPosjeta.vrijemePocetka}">Vrijeme Početka</span></p>
+        <p><strong>Vrijeme završetka:</strong> <span th:text="${grupnaPosjeta.vrijemeZavrsetka}">Vrijeme Završetka</span></p>
+        <h3>Vodici:</h3>
+        <ul>
+          <li th:each="vodici : ${grupnaPosjeta.vodici}">
+            <a th:href="@{/radnik/{id}(id=${vodici.id})}" th:text="${vodici.ime} +' ' + ${vodici.prezime}">Ime vodica</a>
+          </li>
+        </ul>
+        <a th:href="@{/uredi-grupnu-posjetu/{id}(id=${grupnaPosjeta.id})}" class="button">Uredi</a>
+        <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${grupnaPosjeta.id} + ')'" class="button">Obriši</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

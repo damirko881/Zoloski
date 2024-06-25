@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Trošak</title>
+    <link rel="stylesheet" href="/styleforma.css">
+</head>
+<body>
+<h1>Dodaj Trošak</h1>
+<div class="container">
+    <form th:action="@{/uredi-trosak/{id}(id=${trosak.id})}" th:object="${trosak}" method="post">
+        <div class="form-group">
+            <label for="tipTroska">Tip Troška:</label>
+            <select id="tipTroska" name="tipTroska" required>
+                <option value="" disabled selected>Odaberite tip troška</option>
+                <th:block th:each="tip : ${tipoviTroska}">
+                    <option th:value="${tip}" th:text="${tip}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" th:field="*{datum}" required>
+        </div>
+        <div class="form-group">
+            <label for="iznos">Iznos:</label>
+            <input type="number" id="iznos" th:field="*{iznos}" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="zivotinja">Životinja:</label>
+            <select id="zivotinja" name="zivotinja.id">
+                <option value="">Bez životinje</option>
+                <th:block th:each="zivotinja : ${zivotinje}">
+                    <option th:value="${zivotinja.id}" th:text="${zivotinja.ime}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <button type="submit">Dodaj</button>
+    </form>
+</div>
+</body>
+</html>

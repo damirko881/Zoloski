@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikaži Troškove</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+    <script>
+        function potvrdiBrisanje(id) {
+            var odgovor = confirm("Jeste li sigurni da želite obrisati trosak?");
+            if (odgovor) {
+                window.location.href = "/obrisi-trosak/" + id;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikaži Troškove</h1>
+    </header>
+    <div class="tablica">
+        <div th:each="entry : ${troskoviPoZivotinjama}">
+            <h2>Životinja: <span th:text="${entry.key}">Ime životinje</span></h2>
+            <ul>
+                <li th:each="trosak : ${entry.value}">
+                    <p><strong>Datum:</strong> <span th:text="${trosak.datum}">Datum</span></p>
+                    <p><strong>Tip troška:</strong> <span th:text="${trosak.tipTroska}">Tip troška</span></p>
+                    <p><strong>Iznos:</strong> <span th:text="${trosak.iznos}">Iznos</span></p>
+                    <a th:href="@{/uredi-trosak/{id}(id=${trosak.id})}" class="button">Uredi</a>
+                    <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${trosak.id} + ')'" class="button">Obriši</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

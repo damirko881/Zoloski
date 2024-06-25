@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikaži Sve Obaveze</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+    <script>
+        function potvrdiBrisanje(id) {
+            var odgovor = confirm("Jeste li sigurni da želite obrisati obavezu?");
+            if (odgovor) {
+                window.location.href = "/obrisi-obavezu/" + id;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikaži Sve Obaveze</h1>
+    </header>
+    <div class="tablica" th:each="entry : ${obavezePoDatumu}">
+        <h2 th:if="${entry.key != null}" th:text="${#temporals.format(entry.key, 'dd.MM.yyyy')}"></h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Početak</th>
+                <th>Kraj</th>
+                <th>Zaduženi Radnik</th>
+                <th>Zadužena Životinja</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="obaveza : ${entry.value}">
+                <td th:text="${obaveza.naziv}">Naziv</td>
+                <td th:text="${obaveza.pocetak}">Početak</td>
+                <td th:text="${obaveza.kraj}">Kraj</td>
+                <td th:text="${obaveza.radnoVrijeme.radnik.ime} + ' ' + ${obaveza.radnoVrijeme.radnik.prezime}">Zaduženi Radnik</td>
+                <td th:text="${obaveza.zivotinja != null ? obaveza.zivotinja.ime : 'Nema'}">Zadužena Životinja</td>
+                <td><a th:href="@{/uredi-obavezu/{id}(id=${obaveza.id})}" class="button">Uredi</a></td>
+                <td><a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${obaveza.id} + ')'" class="button">Obriši</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

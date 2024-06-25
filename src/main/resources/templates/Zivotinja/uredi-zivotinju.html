@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uredi Životinju</title>
+    <link rel="stylesheet" href="/styleforma.css">
+</head>
+<body>
+<div class="container">
+    <h1>Uredi Životinju</h1>
+    <form th:action="@{/uredi-zivotinju/{id}(id=${zivotinja.id})}" th:object="${zivotinja}" method="post">
+        <div class="form-group">
+            <label for="nazivHr">Hrvatski Naziv:</label>
+            <input type="text" id="nazivHr" th:field="*{nazivHr}" required>
+        </div>
+        <div class="form-group">
+            <label for="nazivEn">Engleski Naziv:</label>
+            <input type="text" id="nazivEn" th:field="*{nazivEn}" required>
+        </div>
+        <div class="form-group">
+            <label for="nazivL">Latinski Naziv:</label>
+            <input type="text" id="nazivL" th:field="*{nazivL}" required>
+        </div>
+        <div class="form-group">
+            <label for="ime">Ime:</label>
+            <input type="text" id="ime" th:field="*{ime}" required>
+        </div>
+        <div class="form-group">
+            <label for="kolicina">Količina:</label>
+            <input type="number" id="kolicina" th:field="*{kolicina}">
+        </div>
+        <div class="form-group">
+            <label for="dobavljanje">Dobavljanje:</label>
+            <input type="text" id="dobavljanje" th:field="*{dobavljanje}" required>
+        </div>
+        <div class="form-group">
+            <label for="uginuce">Uginuće:</label>
+            <input type="checkbox" id="uginuce" th:field="*{uginuce}">
+        </div>
+        <button type="submit">Spremi promjene</button>
+    </form>
+</div>
+</body>
+</html>

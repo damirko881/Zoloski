@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikazi Sva Radna Vremena</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+    <script>
+        function potvrdiBrisanje(id) {
+            var odgovor = confirm("Jeste li sigurni da želite obrisati radno vrijeme?");
+            if (odgovor) {
+                window.location.href = "/obrisi-radno-vrijeme/" + id;
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikazi Sva Radna Vremena</h1>
+    </header>
+    <div th:each="entry : ${radnaVremenaPoDatumu}">
+        <h2 th:text="${#temporals.format(entry.key, 'dd.MM.yyyy')}">Datum</h2>
+        <div class="tablica">
+            <table>
+                <thead>
+                <tr>
+                    <th>Radnik</th>
+                    <th>Početak</th>
+                    <th>Kraj</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="radnoVrijeme : ${entry.value}">
+                    <td><a th:href="@{/radnik/{id}(id=${radnoVrijeme.radnik.id})}" th:if="${radnoVrijeme.radnik != null}" th:text="${radnoVrijeme.radnik.ime} +' ' + ${radnoVrijeme.radnik.prezime}">Ime i prezime radnika</a>
+                    </td>
+                    <td th:text="${radnoVrijeme.pocetak}">Početak</td>
+                    <td th:text="${radnoVrijeme.kraj}">Kraj</td>
+                    <td><a th:href="@{/uredi-radno-vrijeme/{id}(id=${radnoVrijeme.id})}" class="button">Uredi</a></td>
+                    <td><a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${radnoVrijeme.id} + ')'" class="button">Obriši</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

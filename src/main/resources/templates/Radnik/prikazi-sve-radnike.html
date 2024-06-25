@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikazi Radnike</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+    <script>
+        function potvrdiBrisanje(id) {
+            var odgovor = confirm("Jeste li sigurni da želite obrisati radnika?");
+            if (odgovor) {
+                window.location.href = "/obrisi-radnika/" + id;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikazi Radnike</h1>
+    </header>
+    <div th:each="radnik : ${radnici}" class="tablica">
+        <h2 th:text="${radnik.ime + ' ' + radnik.prezime}">Ime i prezime radnika</h2>
+        <p><strong>Kontakt:</strong> <span th:text="${radnik.kontakt}">Kontakt</span></p>
+        <p><strong>Obrazovanje:</strong> <span th:text="${radnik.obrazovanje}">Obrazovanje</span></p>
+        <p><strong>Radna vremena:</strong>
+            <span th:each="radnoVrijeme : ${radnik.radnaVremena}">
+                <span th:text="${radnoVrijeme.datum}+ ' ' + ${radnoVrijeme.pocetak} + ' - ' + ${radnoVrijeme.kraj}"></span>,
+            </span>
+        </p>
+        <p><strong>Osposobljavanja:</strong>
+            <span th:each="osposobljavanje : ${radnik.osposobljavanja}">
+                <span th:text="${osposobljavanje.naziv}"></span>,
+            </span>
+        </p>
+        <a th:href="@{/uredi-radnika/{id}(id=${radnik.id})}" class="button">Uredi</a>
+        <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${radnik.id} + ')'" class="button">Obriši</a>
+    </div>
+</div>
+</body>
+</html>

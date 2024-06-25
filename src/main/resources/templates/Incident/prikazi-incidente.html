@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikaži Incidente</title>
+    <link rel="stylesheet" href="/styleprikaz.css">
+    <script>
+        function potvrdiBrisanje(id) {
+            var odgovor = confirm("Jeste li sigurni da želite obrisati incident?");
+            if (odgovor) {
+                window.location.href = "/obrisi-incident/" + id;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Prikaži Incidente</h1>
+    </header>
+    <div class="tablica">
+        <ul>
+            <li th:each="incident : ${incidenti}">
+                <h2>Incident: <span th:text="${incident.vrsta}">Vrsta incidenta</span></h2>
+                <p><strong>Komentar:</strong> <span th:text="${incident.komentar}">Komentar</span></p>
+                <p><strong>Značajnost:</strong> <span th:text="${incident.znacajnost}">Značajnost</span></p>
+                <p><strong>Troškovi:</strong> <span th:text="${incident.troskovi}">Troškovi</span></p>
+                <p><strong>Nastamba:</strong> <span th:text="${incident.nastamba.naziv}">Naziv nastambe</span></p>
+                <div th:if="${incident.zivotinja != null}">
+                    <p><strong>Životinja:</strong> <span th:text="${incident.zivotinja.ime}">Ime životinje</span></p>
+                </div>
+                <div th:if="${incident.zivotinja == null}">
+                    <p><strong>Životinja:</strong> Nema informacija o životinji</p>
+                </div>
+                <a th:href="@{/uredi-incident/{id}(id=${incident.id})}" class="button">Uredi</a>
+                <a href="javascript:void(0);" th:onclick="'potvrdiBrisanje(' + ${incident.id} + ')'" class="button">Obriši</a>
+
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
